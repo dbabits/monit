@@ -80,7 +80,7 @@ static boolean_t _send(Socket_T socket, Mmonit_T C, StringBuffer_T sb) {
                 bodyLength = StringBuffer_length(sb);
         }
         int rv = Socket_print(socket,
-                              "POST %s HTTP/1.1\r\n"
+                              "POST %s%s%s HTTP/1.1\r\n"
                               "Host: %s%s%s:%d\r\n"
                               "Content-Type: text/xml\r\n"
                               "Content-Length: %zu\r\n"
@@ -91,6 +91,8 @@ static boolean_t _send(Socket_T socket, Mmonit_T C, StringBuffer_T sb) {
                               "%s"
                               "\r\n",
                               C->url->path,
+                              C->url->query ? "?" : "", 
+                              C->url->query ? C->url->query : "",
                               C->url->ipv6 ? "[" : "", C->url->hostname, C->url->ipv6 ? "]" : "", C->url->port,
                               bodyLength,
                               VERSION,
