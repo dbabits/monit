@@ -89,7 +89,7 @@ static boolean_t _send(Socket_T socket, Mmonit_T C, StringBuffer_T sb) {
                               "User-Agent: Monit/%s\r\n"
                               "%s"
                               "%s"
-                              "\r\n",
+                              "\r\n", 
                               C->url->path,
                               C->url->query ? "?" : "", 
                               C->url->query ? C->url->query : "",
